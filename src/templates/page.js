@@ -5,7 +5,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import SEO from '../components/SEO'
-import Layout from '../components/Layout'
+import Layout from '../components/PageLayout'
 import HomePageHero from '../components/HomePageHero'
 
 
