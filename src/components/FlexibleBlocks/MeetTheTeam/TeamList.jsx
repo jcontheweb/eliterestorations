@@ -71,10 +71,10 @@ const TeamListCard = ({ employee }) => {
         <div className="relative bg-center bg-cover shadow-lg group" style={{ backgroundImage: `url(${employee.staff.image.sourceUrl})`, paddingBottom: "100%" }}>
             <div className="absolute inset-0 flex items-end p-4 transition duration-200 bg-red-500 opacity-0 bg-opacity-90 group-hover:opacity-100">
                 <div>
-                    <p className="text-sm text-left text-white text-opacity-75 uppercase transition duration-300 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
+                    <p className="text-sm text-left text-white text-opacity-75 uppercase transition-all duration-300 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                         {employee.staff.jobTitle}
                     </p>
-                    <p className="text-lg text-left text-white transition duration-300 delay-75 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
+                    <p className="text-lg text-left text-white transition-all duration-300 delay-75 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                         {employee.staff.name}
                     </p>
                 </div>

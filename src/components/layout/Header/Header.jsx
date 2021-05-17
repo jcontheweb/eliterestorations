@@ -3,23 +3,31 @@ import { graphql, useStaticQuery } from "gatsby"
 import { Link } from 'gatsby'
 
 import Logo from '../../Logo'
+import MobileMenu from './MobileMenu'
 
 export default function Header() {
     const data = useStaticQuery(
         graphql`
         {
-          wpMenu {
-            id
-            menuItems {
-              nodes {
-                parentId
-                label
-                path
-                childItems {
+            wpMenu(locations: {eq: PRIMARY}) {
+                id
+                menuItems {
                   nodes {
-                    path
+                    url
                     label
+                    path
                   }
+                }
+              }
+          wp {
+            siteSettings {
+              siteOptions {
+                addressLine1
+                addressLine2
+                alertBar
+                contactNumber {
+                  number
+                  label
                 }
               }
             }
@@ -29,16 +37,17 @@ export default function Header() {
     )
 
     const menuItems = data.wpMenu.menuItems.nodes
+    const settings = data.wp.siteSettings.siteOptions
     return (
-        <header className="sticky top-0 z-50 bg-white border-b">
-            <div className="hidden lg:block bg-red-500 py-2 text-center text-sm text-white">
-                OVER 25 YEARS OF FAMILY OWN AND OPERATED EXPERIENCE WHILE PROUDLY SERVING THE FOUR STATE COMMUNITY
-      </div>
-            <div className="flex items-center justify-between px-4 py-2 overflow-auto text-white whitespace-no-wrap border-b bg-brandBlack">
+        <header className="sticky top-0 z-50 bg-white lg:border-b">
+            <div className="hidden lg:block bg-red-500 py-2 text-center text-sm text-white" dangerouslySetInnerHTML={{ __html: settings.alertBar }}></div>
+            <div className="flex items-center justify-between px-4 py-2 overflow-auto text-white whitespace-nowrap lg:border-b bg-brandBlack">
                 <Logo className="w-40 mr-6 lg:w-48" />
-                {/* <MobileMenu /> */}
+                <div className="lg:hidden">
+                    <MobileMenu menuItems={menuItems} />
+                </div>
 
-                <div className="flex items-center divide-x divide-white divide-opacity-20">
+                <div className="hidden lg:flex items-center divide-x divide-white divide-opacity-20">
                     <div className="flex items-center px-0 pr-4 md:px-4 group">
                         <svg
                             className="w-6 mr-2 transition duration-200 group-hover:text-red-500"
@@ -52,10 +61,8 @@ export default function Header() {
                             <p className="text-sm leading-none text-gray-400">Call us today</p>
                             <a
                                 className="block mt-px font-semibold leading-none tracking-tight transition duration-200 group-hover:text-red-500 hover:underline"
-                                href={`tel:123123123`}
-                            >
-                                123123123
-            </a>
+                                href={`tel:${settings.contactNumber.number}`}
+                            >{settings.contactNumber.label} </a>
                         </div>
                     </div>
                     <div className="flex items-center px-4 group">
@@ -92,22 +99,21 @@ export default function Header() {
                             />
                         </svg>
                         <div>
-                            <p className="text-sm leading-none text-gray-400">18744 MO-59</p>
+                            <p className="text-sm leading-none text-gray-400">{settings.addressLine1}</p>
                             <a
-                                href=""
+                                href="/"
                                 className="block mt-px font-semibold leading-none tracking-tight transition duration-200 group-hover:text-red-500 hover:underline"
-                            >
-                                Neosho, MO 64850
-            </a>
+                            >{settings.addressLine2} </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <nav className="relative z-20 flex items-center justify-between text-brandBlack">
-                <ul className="flex items-center overflow-x-auto whitespace-no-wrap xl:whitespace-normal ml-auto">
+            <nav className="hidden relative z-20 lg:flex items-center justify-between text-brandBlack">
+                <ul className="flex items-center overflow-x-auto whitespace-nowrap xl:whitespace-normal ml-auto">
                     {menuItems.map((item, index) => (
                         <li key={index}>
                             <Link
+                                activeClassName="bg-gray-100"
                                 className="flex p-4 text-sm font-semibold text-center transition duration-200 border-l hover:bg-gray-100 focus:bg-gray-200 focus:text-black"
                                 to={item.path}
                             >

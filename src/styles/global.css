@@ -1,7 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
 .container {
-    @apply max-w-6xl mx-auto px-4 sm:px-8;
+  @apply max-w-6xl mx-auto px-4 sm:px-8;
+}
+
+article.markdown h1,
+article.markdown h2,
+article.markdown h3,
+article.markdown h4,
+article.markdown h5,
+article.markdown h6,
+article.markdown p,
+article.markdown ul,
+article.markdown img {
+  @apply mb-4;
+}
+article.markdown h2 {
+  @apply text-3xl font-semibold tracking-tight;
+}
+article.markdown h3 {
+  @apply text-2xl font-semibold tracking-tight text-red-500;
+}
+article.markdown h4 {
+  @apply text-xl font-semibold tracking-tight;
+}
+article.markdown hr {
+  @apply border-red-500 my-4;
+}
+article.markdown ul {
+  @apply pl-4 list-disc;
+}
+article.markdown a {
+  @apply transition duration-200 text-red-500;
+}
+article.markdown a:hover {
+  @apply underline;
+}
+
+.link--arrow svg path {
+  transition: 0.2s;
+}
+.link--arrow:hover svg path {
+  d: path('M30 8l4 4m0 0l-4 4m4-4H3');
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

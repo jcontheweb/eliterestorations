@@ -9,7 +9,7 @@ const FormCareers = data => {
             <div className="max-w-md w-full">
               <p className="text-sm font-semibold leading-none text-red-500 uppercase">{data?.subheading}</p>
               <h3 className="mt-2 text-4xl font-semibold leading-none">{data?.heading}</h3>
-              <p className="mt-4" dangerouslySetInnerHTML={{ __html: data?.text }}></p>
+              <div className="mt-4" dangerouslySetInnerHTML={{__html: data?.text}}></div>
               <div className="mt-8">
                 {data.roles.map((role, index) => <JobListItem key={index} title={role.role} />)}
               </div>
@@ -71,6 +71,7 @@ const ApplicationForm = ({roles}) => {
           <label className="block">
             <span className="block mb-px text-sm font-semibold">Name</span>
             <input
+              type="text"
               name="name"
               className="block w-full mt-1 placeholder-gray-400 form-input"
               placeholder="John Smith"
@@ -88,6 +89,7 @@ const ApplicationForm = ({roles}) => {
           <label className="block mt-4">
             <span className="block mb-px text-sm font-semibold">Phone</span>
             <input
+              type="text"
               name="phone_number"
               className="block w-full mt-1 placeholder-gray-400 form-input"
               placeholder="(555)-555-5555"

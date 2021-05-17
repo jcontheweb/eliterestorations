@@ -1,9 +1,38 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 
 import Logo from "../../Logo"
 
 const Footer = () => {
+  const data = useStaticQuery(
+    graphql`
+    {
+      wpMenu(locations: {eq: FOOTER}) {
+        id
+        menuItems {
+          nodes {
+            url
+            label
+          }
+        }
+      }
+      wp {
+        siteSettings {
+          siteOptions {
+            facebookPage
+            googlePlaceId
+            contactNumber {
+              number
+            }
+          }
+        }
+      }
+    }
+  `
+  )
+  const menuItems = data.wpMenu.menuItems.nodes
+  const settings = data.wp.siteSettings.siteOptions
+
   return (
     <footer className="py-16 text-white text-opacity-90 bg-brandBlack">
       <div className="container">
@@ -17,19 +46,19 @@ const Footer = () => {
           <div className="flex flex-col items-center lg:items-start">
             <h2 className="text-sm font-semibold tracking-wide uppercase">services</h2>
             <ul className="mt-2 text-gray-400">
-              {/* {ServiceRoutes.map(route => (
-                <li className="relative mb-1 text-center lg:text-left">
-                  <Link className="transition duration-200 hover:text-red-500" to={route.path}>{route.title}</Link>
+              {menuItems.map((item, index) => (
+                <li key={index} className="relative mb-1 text-center lg:text-left">
+                  <Link className="transition duration-200 hover:text-red-500" to={item.label}>{item.label}</Link>
                 </li>
-              ))} */}
+              ))}
             </ul>
           </div>
           <div className="flex flex-col items-center lg:items-start">
-          <h2 className="text-sm font-semibold tracking-wide uppercase">customer care</h2>
+            <h2 className="text-sm font-semibold tracking-wide uppercase">customer care</h2>
             <ul className="mt-2 text-gray-400">
               <li className="relative mb-1 text-center lg:text-left">
                 <a
-                  href="tel:+14178253740"
+                  href={`tel:+${settings.contactNumber.number}`}
                   className="transition duration-200 hover:text-red-500"
                 >
                   Call us
@@ -37,7 +66,7 @@ const Footer = () => {
               </li>
               <li className="relative mb-1 text-center lg:text-left">
                 <a
-                  href={`https://search.google.com/local/writereview?placeid=ChIJIWc3iRtXyIcRaFx0NavFA9U`}
+                  href={`https://search.google.com/local/writereview?placeid=${settings.googlePlaceId}`}
                   target="__blank"
                   className="transition duration-200 hover:text-red-500"
                 >
@@ -47,12 +76,12 @@ const Footer = () => {
             </ul>
           </div>
           <div className="flex flex-col items-center lg:items-start">
-          <h2 className="text-sm font-semibold tracking-wide uppercase">connect with us</h2>
+            <h2 className="text-sm font-semibold tracking-wide uppercase">connect with us</h2>
             <ul className="mt-2 text-gray-400">
               <li className="relative mb-2 text-center lg:text-left">
                 <a
                   target="__blank"
-                  href="https://www.facebook.com/1EliteSquad/"
+                  href={settings.facebookPage}
                   className="flex transition duration-200 hover:text-red-500"
                 >
                   <svg

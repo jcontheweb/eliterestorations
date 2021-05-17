@@ -1,7 +1,26 @@
 import React from "react"
+import { graphql, useStaticQuery } from 'gatsby'
+
 import Circles from "../../../images/circles.svg"
 
 const GetAQuote = () => {
+  const data = useStaticQuery(
+    graphql`
+    {
+      wp {
+        siteSettings {
+          siteOptions {
+            contactNumber {
+              number
+              label
+            }
+          }
+        }
+      }
+    }
+    `
+  )
+  const settings = data.wp.siteSettings.siteOptions
   return (
     <section className="relative py-8 overflow-hidden bg-gradient-to-b from-red-500 to-red-600 lg:py-0 lg:pt-0">
       <div className="container relative">
@@ -29,11 +48,11 @@ const GetAQuote = () => {
                 style={{ transform: "translate(-50%, -50%)", top: "50%" }}
               >
               </div>
-              Get a quote <br className="hidden lg:block" /> instantly.
-            </h2>
+      Get a quote <br className="hidden lg:block" /> instantly.
+      </h2>
             <a
               className="relative inline-flex items-center justify-center w-full px-3 py-3 mt-8 font-semibold leading-none tracking-tight text-white transition duration-200 border-2 shadow-lg lg:w-auto focus:shadow-inner border-brandBlack bg-brandBlack"
-              href={`tel:123123123`}
+              href={`tel:${settings.contactNumber.number}`}
             >
               <svg
                 className="w-5 mr-2"
@@ -43,7 +62,7 @@ const GetAQuote = () => {
               >
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
-              +1 417-825-3740
+              {settings.contactNumber.label}
             </a>
           </div>
         </div>

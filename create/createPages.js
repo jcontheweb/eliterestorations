@@ -9,7 +9,7 @@ const {
 } = require('fs')
 
 const pageTemplateFile = path.join(process.cwd(), 'src', 'templates', 'page.js')
-const componentsFolder = path.join(process.cwd(), 'src', 'components', 'page')
+const componentsFolder = path.join(process.cwd(), 'src', 'components', 'FlexibleBlocks')
 const templateFolder = path.join(process.cwd(), '.cache', 'page-templates')
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -29,7 +29,7 @@ const getPages = async (postTypes, { graphql }) => {
   const graphqlResult = await graphql(`
     query GetAllPagesWithComponents {
       ${postTypes.map(postType => {
-        return `
+    return `
           allWp${postType} {
             nodes {
               id
@@ -44,7 +44,7 @@ const getPages = async (postTypes, { graphql }) => {
             }
           }
         `
-      }).join()}
+  }).join()}
     }
   `)
   if (graphqlResult.errors) {
@@ -141,24 +141,24 @@ const createTemporaryPageTemplateFile = (databaseId, postType, slug, componentNa
 
   // Create the string which will import all the components this page needs
   const componentImportString = componentNames
-  .map(componentName => {
-    return `import ${componentName} from '../../src/components/page/${componentName}'`
-  })
-  .join('\n')
+    .map(componentName => {
+      return `import ${componentName} from '../../src/components/FlexibleBlocks/${componentName}'`
+    })
+    .join('\n')
 
   // Create the string which set the data variable
   const dataVariableString = `data = pageProps.data.wp${postType}`
 
   // Create the string which will conditionally render all the components this page needs
   const componentRenderString = componentNames
-  .map(componentName => {
-    return `
+    .map(componentName => {
+      return `
       if (component.name == '${componentName}') {
         return <${componentName} {...component.data} key={index} />
       }
     `
-  })
-  .join('\n')
+    })
+    .join('\n')
 
   // Create the string which will query the data the page needs
   const pageQueryString = `
@@ -166,6 +166,68 @@ const createTemporaryPageTemplateFile = (databaseId, postType, slug, componentNa
       query PageQuery${databaseId}($id: String!) {
         wp${postType}(id: {eq: $id}) {
           title
+          isFrontPage
+          seo {
+            canonical
+            title
+            metaDesc
+            focuskw
+            metaRobotsNoindex
+            metaRobotsNofollow
+            opengraphAuthor
+            opengraphDescription
+            opengraphTitle
+            opengraphDescription
+            opengraphImage {
+                altText
+                sourceUrl
+                srcSet
+            }
+            opengraphUrl
+            opengraphSiteName
+            opengraphPublishedTime
+            opengraphModifiedTime
+            twitterTitle
+            twitterDescription
+            twitterImage {
+                altText
+                sourceUrl
+                srcSet
+            }
+            breadcrumbs {
+                url
+                text
+            }
+            cornerstone
+            schema {
+                pageType
+                articleType
+                raw
+            }
+            readingTime
+            fullHead
+        }
+        author {
+            node {
+                seo {
+                    metaDesc
+                    metaRobotsNofollow
+                    metaRobotsNoindex
+                    title
+                    social {
+                        youTube
+                        wikipedia
+                        twitter
+                        soundCloud
+                        pinterest
+                        mySpace
+                        linkedIn
+                        instagram
+                        facebook
+                    }
+                }
+            }
+        }
           ${getComponentsQuery(postType)}
         }
       }
@@ -229,7 +291,7 @@ const getAllComponentFragments = postType => {
       `${componentName}.data.js`
     )
     const query = require(componentDataFile)
-    
+
     // This assumes your:
     // 1. ACF Field Group's GraphQL Field Name = page_components
     // 2. Flexible Content Field Name = components
