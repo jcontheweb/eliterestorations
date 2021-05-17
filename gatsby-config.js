@@ -3,7 +3,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: process.env.WPGRAPHQL_URL || `http://admin.eliterestorations.test/graphql`,
+        url: process.env.WPGRAPHQL_URL || `http://143.198.136.74/graphql`,
       },
       includedRoutes: [
         "**/categories",
