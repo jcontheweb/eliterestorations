@@ -2,9 +2,9 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Link } from 'gatsby'
 
-import SEO from '../../components/SEO'
-import Layout from '../../components/Layout'
-import GetAQuote from '../../components/FlexibleBlocks/GetAQuote'
+import SEO from '../components/SEO'
+import Layout from '../components/Layout'
+import GetAQuote from '../components/FlexibleBlocks/GetAQuote'
 
 export default function ServicePage({ data }) {
   const services = data.allWpService
