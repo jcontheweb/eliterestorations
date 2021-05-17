@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { Link } from 'gatsby'
 
 import SEO from '../components/SEO'
-import Layout from '../components/Layout'
+import Layout from '../components/PageLayout'
 import GetAQuote from '../components/FlexibleBlocks/GetAQuote'
 
 export default function ServicePage({ data }) {
