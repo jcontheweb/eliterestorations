@@ -1,8 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
-import Logo from "../../Logo"
-
 const Footer = () => {
   const data = useStaticQuery(
     graphql`
@@ -39,16 +37,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           <div className="flex flex-col items-center lg:pr-6">
             <img src="/elite-large-no-bg.png" alt="" />
-            {/* <p className="mt-2 text-center text-sm text-gray-400">
-              Serving the Four-States for the past 25 years.
-            </p> */}
           </div>
           <div className="flex flex-col items-center lg:items-start">
             <h2 className="text-sm font-semibold tracking-wide uppercase">services</h2>
             <ul className="mt-2 text-gray-400">
               {menuItems.map((item, index) => (
                 <li key={index} className="relative mb-1 text-center lg:text-left">
-                  <Link className="transition duration-200 hover:text-red-500" to={item.label}>{item.label}</Link>
+                  <Link className="transition duration-200 hover:text-red-500" to={item.url}>
+                    {item.label} 
+                  </Link>
                 </li>
               ))}
             </ul>

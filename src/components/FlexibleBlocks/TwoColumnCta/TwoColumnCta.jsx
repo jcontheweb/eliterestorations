@@ -20,7 +20,7 @@ const TwoColumnCta = data => {
             {data.button.title}
           </Link>
           ) : (
-            <a class="block w-auto px-6 py-4 text-sm font-semibold leading-none text-center text-white transition duration-200 bg-red-500 shadow-md focus:outline-none hover:bg-red-600" href="tel:+14178253740">Call Now</a>
+            <a className="block w-auto px-6 py-4 text-sm font-semibold leading-none text-center text-white transition duration-200 bg-red-500 shadow-md focus:outline-none hover:bg-red-600" href="tel:+14178253740">Call Now</a>
           )}
           </div>
         </div>
