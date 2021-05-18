@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const FormCareers = data => {
   return (
@@ -50,27 +50,6 @@ const ApplicationForm = ({roles}) => {
   const updateFilename = event => {
     setFilename(event.target.files[0].name)
   }
-  const encode = data => {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-      .join("&")
-  }
-  const handleSubmit = e  => {
-    e.preventDefault()
-    const form = formRef.current;
-    const formData = new FormData(form)
-    const body = new URLSearchParams(formData).toString()
-    fetch('/', {
-      method: 'POST',
-      headers: { "Content-Type": "multipart/form-data" },
-      body: body
-    }).then(() => console.log('Form successfully submitted')).catch((error) =>
-      alert(error))
-  }
-  useEffect(() => {
-    formRef.current.addEventListener('submit', handleSubmit)
-  }, [])
-
 
   return (
     <div className="relative max-w-xl mx-auto">
