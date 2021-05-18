@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Link } from 'gatsby'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import SEO from '../components/SEO'
 import Layout from '../components/PageLayout'
@@ -10,16 +11,21 @@ export default function ServicePage({ data }) {
   const services = data.allWpService
   const service = data.wpService
   const header = service?.servicesPageComponents?.pageHeader
+  const image = getImage(header?.image?.localFile)
 
   return (
     <>
       <SEO seo={data.wpService.seo} />
       <Layout>
         <>
-          <div
-            className="relative py-16 bg-center bg-no-repeat bg-cover"
-            style={{ backgroundImage: `url(${header?.image?.sourceUrl})` }}
-          >
+          <div className="relative py-16">
+            <GatsbyImage image={image} style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width: "100%",
+              height: "100%"
+            }} alt="" />
             <div className="absolute inset-0 bg-opacity-50 bg-brandBlack"></div>
             <div className="container">
               <h1 className="relative text-3xl font-semibold leading-tight text-center text-white capitalize md:text-5xl">
@@ -40,8 +46,8 @@ export default function ServicePage({ data }) {
                     key={index}
                     to={servicePost.node.uri}
                     className={`p-4 border-b whitespace-no-wrap font-semibold text-sm flex items-center justify-between capitalize text-brandBlack ${servicePost.node.uri === service.uri
-                        ? "bg-gray-100 -mr-px"
-                        : "hover:bg-gray-200 duration-200 transition text-opacity-75 hover:text-opacity-100"
+                      ? "bg-gray-100 -mr-px"
+                      : "hover:bg-gray-200 duration-200 transition text-opacity-75 hover:text-opacity-100"
                       }`}
                   >
                     {servicePost.node.title}
@@ -114,6 +120,11 @@ query($id: String) {
             heading
             image {
               sourceUrl
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(placeholder: BLURRED)
+                }
+              }
             }
           }
         }

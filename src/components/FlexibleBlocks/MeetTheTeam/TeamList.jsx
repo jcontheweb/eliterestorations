@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from 'gatsby'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const TeamList = () => {
     const data = useStaticQuery(
@@ -14,6 +15,11 @@ const TeamList = () => {
                             name
                             image {
                                 sourceUrl
+                                localFile {
+                                    childImageSharp {
+                                      gatsbyImageData(placeholder: BLURRED)
+                                    }
+                                  }
                             }
                         }
                         uri
@@ -67,8 +73,18 @@ const TeamList = () => {
 }
 
 const TeamListCard = ({ employee }) => {
+    const image = getImage(employee.staff.image.localFile)
     return (
-        <div className="relative bg-center bg-cover shadow-lg group" style={{ backgroundImage: `url(${employee.staff.image.sourceUrl})`, paddingBottom: "100%" }}>
+        <div className="relative overflow-hidden shadow-lg group" style={{ paddingBottom: "100%" }}>
+            <div className="absolute h-full w-full">
+                <GatsbyImage image={image} style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    width: "100%",
+                    height: "100%"
+                }} alt="" />
+            </div>
             <div className="absolute inset-0 flex items-end p-4 transition duration-200 bg-red-500 opacity-0 bg-opacity-90 group-hover:opacity-100">
                 <div>
                     <p className="text-sm text-left text-white text-opacity-75 uppercase transition-all duration-300 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">

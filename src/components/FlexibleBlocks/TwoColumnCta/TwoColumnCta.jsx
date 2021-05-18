@@ -1,7 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const TwoColumnCta = data => {
+  const image = getImage(data.image.localFile)
   return (
     <section className="relative bg-gray-100">
       <div className="container py-12 lg:py-32 flex flex-col lg:flex-row items-center">
@@ -22,8 +24,7 @@ const TwoColumnCta = data => {
           <div className="flex-1 order-first lg:order-last mb-8 lg:mb-0 block lg:ml-16">
           <div className="relative flex">
             <div className="w-full">
-              <img src={data.image.sourceUrl} alt="" />
-              {/* <Img fluid={data.file.childImageSharp.fluid} /> */}
+              <GatsbyImage image={image} alt="" />
             </div>
           </div>
         </div>

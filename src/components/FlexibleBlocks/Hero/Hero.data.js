@@ -3,6 +3,11 @@ module.exports = () => {
     heading
     backgroundImage {
       sourceUrl
+      localFile {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED)
+        }
+      }
     }
   `
 }

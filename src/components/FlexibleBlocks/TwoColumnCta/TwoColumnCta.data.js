@@ -9,6 +9,11 @@ module.exports = () => {
     }
     image {
       sourceUrl
+      localFile {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED)
+        }
+      }
     }
     alignment
   `

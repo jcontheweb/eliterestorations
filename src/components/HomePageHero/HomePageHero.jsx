@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 export default function HomePageHero() {
     const data = useStaticQuery(
@@ -11,7 +12,12 @@ export default function HomePageHero() {
                     buttonLabel
                     heading
                     image {
-                      sourceUrl
+                        sourceUrl
+                        localFile {
+                            childImageSharp {
+                              gatsbyImageData(placeholder: BLURRED)
+                            }
+                          }
                     }
                     text
                   }
@@ -29,6 +35,7 @@ export default function HomePageHero() {
         }
         `
     )
+    const image = getImage(data.wpPage.homePage.hero.image.localFile)
     const hero = data.wpPage.homePage.hero
     return (
         <div className="bg-brandBlack">
@@ -46,7 +53,7 @@ export default function HomePageHero() {
                     </div>
                     {hero.image && (
                         <div className="hidden lg:block flex-1 ml-8">
-                            <img src={hero.image.sourceUrl} alt="" />
+                            <GatsbyImage image={image} alt="" />
                         </div>
                     )}
                 </div>
