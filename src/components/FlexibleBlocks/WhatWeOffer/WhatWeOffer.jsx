@@ -35,7 +35,7 @@ const WhatWeOffer = data => {
             <div className="mt-6">
               <Link
                 className="inline-flex items-center text-sm text-red-500 transition duration-200 group link--arrow"
-                to="/service/carpet-tile"
+                to="/services/carpet-tile"
               >
                 <span>List of services</span>
                 <svg

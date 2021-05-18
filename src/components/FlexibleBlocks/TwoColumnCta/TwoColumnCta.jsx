@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const TwoColumnCta = data => {
-  const image = getImage(data.image.localFile)
+  const image = getImage(data?.image?.localFile)
   return (
     <section className="relative bg-gray-100">
       <div className="container py-12 lg:py-32 flex flex-col lg:flex-row items-center">
@@ -12,13 +12,16 @@ const TwoColumnCta = data => {
           <h2 className="mt-2 text-4xl font-semibold leading-none">{data.heading}</h2>
           <div className="mt-4 text-gray-700" dangerouslySetInnerHTML={{__html: data.text}}></div>
           <div className="flex mt-6">
-          {/* <Link
-              className="block w-auto px-6 py-4 text-sm font-semibold leading-none text-center text-white transition duration-200 bg-red-500 shadow-md focus:outline-none hover:bg-red-600"
-              to={data.button.url}
-            >
-              {data.button.title}
-            </Link> */}
+          {data.button ? (
+            <Link
+            className="block w-auto px-6 py-4 text-sm font-semibold leading-none text-center text-white transition duration-200 bg-red-500 shadow-md focus:outline-none hover:bg-red-600"
+            to={data.button.url}
+          >
+            {data.button.title}
+          </Link>
+          ) : (
             <a class="block w-auto px-6 py-4 text-sm font-semibold leading-none text-center text-white transition duration-200 bg-red-500 shadow-md focus:outline-none hover:bg-red-600" href="tel:+14178253740">Call Now</a>
+          )}
           </div>
         </div>
         {data.image && (
