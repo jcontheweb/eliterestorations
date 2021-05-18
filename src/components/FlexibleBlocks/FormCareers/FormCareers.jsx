@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 const FormCareers = data => {
   return (
@@ -46,9 +46,31 @@ const JobListItem = ({ title }) => (
 
 const ApplicationForm = ({roles}) => {
   const [filename, setFilename] = useState("")
+  const formRef = useRef()
   const updateFilename = event => {
     setFilename(event.target.files[0].name)
   }
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&")
+  }
+  const handleSubmit = e  => {
+    e.preventDefault()
+    const form = formRef.current;
+    const formData = new FormData(form)
+    const body = new URLSearchParams(formData).toString()
+    fetch('/', {
+      method: 'POST',
+      headers: { "Content-Type": "multipart/form-data" },
+      body: body
+    }).then(() => console.log('Form successfully submitted')).catch((error) =>
+      alert(error))
+  }
+  useEffect(() => {
+    formRef.current.addEventListener('submit', handleSubmit)
+  }, [])
+
 
   return (
     <div className="relative max-w-xl mx-auto">
@@ -57,6 +79,7 @@ const ApplicationForm = ({roles}) => {
         style={{ transform: "translate(8px, -8px)", top: "2px", left: "-4px", right: "2px", bottom: "-6px" }}
       ></div>
       <form
+        ref={formRef}
         action="/careers"
         method="post"
         data-netlify="true"
