@@ -18,7 +18,7 @@ export default function ServicePage({ data }) {
       <SEO seo={data.wpService.seo} />
       <Layout>
         <>
-          <div className="relative py-16">
+          {/* <div className="relative py-16">
             <GatsbyImage image={image} style={{
               position: "absolute",
               left: 0,
@@ -32,7 +32,7 @@ export default function ServicePage({ data }) {
                 {header?.heading}
               </h1>
             </div>
-          </div>
+          </div> */}
 
           {/* main section */}
           <div className="flex flex-1">

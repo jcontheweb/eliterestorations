@@ -48,7 +48,7 @@ const GetAQuote = () => {
                 style={{ transform: "translate(-50%, -50%)", top: "50%" }}
               >
               </div>
-      Get a quote <br className="hidden lg:block" /> instantly.
+      Get a quote or speak to a team member instantly.
       </h2>
             <a
               className="relative inline-flex items-center justify-center w-full px-3 py-3 mt-8 font-semibold leading-none tracking-tight text-white transition duration-200 border-2 shadow-lg lg:w-auto focus:shadow-inner border-brandBlack bg-brandBlack"

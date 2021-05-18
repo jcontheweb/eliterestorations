@@ -40,14 +40,14 @@ export default function HomePageHero() {
     return (
         <div className="bg-brandBlack">
             <div className="container relative">
-                <div className="flex flex-wrap items-center justify-between py-12 lg:py-40">
-                    <div className="text-white md:max-w-xl">
+                <div className="flex flex-wrap items-center justify-between py-12 lg:py-0">
+                    <div className="text-white md:max-w-lg">
                         <div className="flex mb-1 text-3xl leading-none rounded lg:text-5xl">
                             <span className="w-2 mr-1 bg-red-500 lg:mr-4">{` `}</span>
                             <h1 className="text-4xl font-bold lg:text-6xl">{hero.heading}</h1>
                         </div>
                         <div className="mt-4 lg:mt-6 lg:text-lg" dangerouslySetInnerHTML={{ __html: hero.text }}></div>
-                        <a href={`tel:${data.wp.siteSettings.siteOptions.contactNumber.number}`} className="inline-block w-full px-8 py-4 mt-8 text-sm font-semibold leading-none transition duration-200 bg-red-500 md:w-auto focus:shadow-outline hover:bg-red-600 focus:outline-none">
+                        <a href={`tel:${data.wp.siteSettings.siteOptions.contactNumber.number}`} className="inline-block w-full text-center px-8 py-4 mt-8 text-sm font-semibold leading-none transition duration-200 bg-red-500 md:w-auto focus:shadow-outline hover:bg-red-600 focus:outline-none">
                             {hero.buttonLabel}
                         </a>
                     </div>

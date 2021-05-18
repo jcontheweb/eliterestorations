@@ -7,35 +7,35 @@ import IconMold from "../../../images/icons/shield.inline.svg"
 const data = [
   {
     type: "carpet",
-    path: "/service/carpet-tile",
+    path: "/services/carpet-tile",
     title: "Carpet & Tile",
     description: "some description about carpet & tile",
     thumbnail: IconCarpet,
   },
   {
     type: "water",
-    path: "/service/water",
+    path: "/services/water-flooding",
     title: "Water & Flooding",
     description: "some description about water & flooding",
     thumbnail: IconFlood,
   },
   {
     type: "mold",
-    path: "/service/mold",
+    path: "/services/mold-remediation",
     title: "Mold Remediation",
     description: "some description about mold remediation",
     thumbnail: IconMold
   },
   {
     type: "fire",
-    path: "/service/fire",
+    path: "/services/fire-damage",
     title: "Fire Damage",
     description: "some description about fire damage",
     thumbnail: IconFire
   },
   {
     type: "biohazard",
-    path: "/service/biohazard-trauma",
+    path: "/services/biohazard-trauma-cleanup",
     title: "Biohazard & Trauma Cleanup",
     description: "some description about biohazard and trauma cleanup",
     thumbnail: IconBiohazard
