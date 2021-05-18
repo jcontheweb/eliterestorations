@@ -34,7 +34,7 @@ const Footer = () => {
   const settings = data.wp.siteSettings.siteOptions
 
   return (
-    <footer className="py-16 text-white relative text-opacity-90 bg-brandBlack">
+    <footer className="py-16 pb-24 lg:pb-16 text-white relative text-opacity-90 bg-brandBlack">
       <div className="container">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           <div className="flex flex-col items-center lg:pr-6">
@@ -82,7 +82,7 @@ const Footer = () => {
                 <a
                   target="__blank"
                   href={settings.facebookPage}
-                  className="flex transition duration-200 hover:text-red-500"
+                  className="flex items-start transition duration-200 hover:text-red-500"
                 >
                   <svg
                     className="w-5"
