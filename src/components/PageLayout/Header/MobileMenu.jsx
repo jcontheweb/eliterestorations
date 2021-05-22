@@ -7,7 +7,7 @@ export const MobileMenu = ({ menuItems }) => {
 
   return (
     <>
-      <button className="p-2 transition duration-200 focus:bg-white20" onClick={() => setExpanded(!expanded)}>
+      <button aria-label="mobile-menu" className="p-2 transition duration-200 focus:bg-white20" onClick={() => setExpanded(!expanded)}>
         <svg
           className="w-8"
           xmlns="http://www.w3.org/2000/svg"

@@ -22,7 +22,7 @@ const SEO = ( seoFromPage ) => {
         url: `${siteUrl}${pathname}`,
     }
     return (
-        <Helmet title={seo.title}>
+        <Helmet htmlAttributes={{ lang: 'en' }} title={seo.title}>
             <meta name="description" content={seo.description} />
             <meta name="image" content={seo.image} />
             {seo.url && <meta property="og:url" content={seo.url} />}
