@@ -48,8 +48,18 @@ module.exports = {
         icon: `src/images/icon.png`
       },
     },
+    `gatsby-plugin-advanced-sitemap`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://elitefourstates.com',
+        sitemap: 'https://elitefourstates.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    }
   ],
   siteMetadata: {
+    siteUrl: 'https://elitefourstates.com',
     title: "Professional Cleaning",
     titleTemplate: "%s - Elite Carpet Cleaning & Restoration",
     description:
